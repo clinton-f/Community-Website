@@ -1,0 +1,178 @@
+.dashboard {
+    position: relative;
+    margin-bottom: 100px;
+}
+
+.dasboard-container {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.dasboard-container-header {
+    height: 100vh;
+    margin-top: 80px;
+}
+
+.dasboard-container-header-title {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hr1 {
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 2px;
+}
+
+.hr2 {
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 2px;
+}
+
+.nav-tabs {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.nav-tabs a {
+    border-radius: 0px;
+    color: #f5edd5;
+    background-color: #26693a;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-tabs a:hover,
+.nav-tabs a:active {
+    transition: all .1s ease-in-out;
+    background-color: #f5edd5;
+    color: #26693a;
+}
+
+pre {
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.table-container {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.form-control {
+    border-radius: 0px;
+    border-style: none;
+    background-color: #f5edd5;
+    width: 300px;
+    height: 45px;
+}
+
+.dasboardTittle {
+    color: #262626;
+    font-family: 'Courgette', cursive;
+    font-weight: bold;
+    padding-top: 50px;
+    padding-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    font-size: 45px;
+}
+
+.dasboardBtn {
+    display: flex;
+    justify-content: space-around;
+}
+
+.edit-Btn,
+.delete-Btn {
+    width: 80px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    border-radius: 0px;
+    color: #f5edd5;
+    background-color: #26693a;
+}
+
+.PageNavigation {
+    margin-top: 20px;
+}
+
+pagination-controls {
+    border-radius: 0px;
+    color: #f5edd5;
+    background-color: #26693a;
+    height: 40px;
+    width: auto;
+}
+
+pagination-controls:hover {
+    border-radius: 0px;
+    color: #26693a;
+    background-color: #f5edd5;
+    border: #26693a;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 1000px) {
+    .table-container {
+        overflow-x: scroll;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .delete-Btn {
+        margin-left: 10px;
+    }
+}
+
+@media screen and (max-width: 600px) {}
+
+div .cms-container {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+div .cms-container,
+.cms-input span {
+    margin-right: 10px;
+}
+
+.cms-input {
+    margin-top: 20px;
+}
+
+.cms-input textarea {
+    border-radius: 0px;
+    border-style: none;
+    background-color: #f5edd5;
+}
+
+.searchBar {
+    border: 2px solid #26693a;
+}
+
+.createEventBtn:hover,
+.createEventBtn:active {
+    transition: all .1s ease-in-out;
+    box-shadow: 3px 6px rgba(46, 46, 46, 0.534);
+}
+
+.createEventBtn {
+    margin-top: 20px;
+    border-style: none;
+    width: 130px;
+    height: 45px;
+    background: #26693a;
+    border-radius: none;
+    color: #f5edd5;
+}

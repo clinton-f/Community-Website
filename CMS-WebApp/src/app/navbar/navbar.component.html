@@ -1,0 +1,105 @@
+<nav class="navbar">
+
+    <label class="logo" routerLink="/" (click)="toHero()">Cobblestone Place</label>
+    <ul class="nav-menu">
+        <li class="nav-item"><a class="nav-link" routerLink="/" (click)="toHero()">HOME</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/bulletin" (click)="toHero()">BULLETIN</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/administer" (click)="toHero()">Administer</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/dashboard" (click)="toHero()">DASHBOARD</a></li>
+        <li class="nav-item"><a class="nav-link" (click)="openLO(content1)">LOG-IN</a></li>
+        <li class="nav-item"><a class="nav-link" (click)="openLO(content2)">SIGN-OUT</a></li>
+        <li class="nav-item"><a class="nav-link" (click)="openR(content3)">REGISTER</a></li>
+    </ul>
+
+    <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+
+</nav>
+
+<!-- Login -->
+<ng-template #content1 let-modal>
+    <div class="modal-header m-4">
+        <h4 class="modal-title">LOG-IN</h4>
+        <button type="button" class="close px-1" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body m-4">
+        <form>
+            <div class="form-group m-2">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control p-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class="form-group m-2">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control p-2" id="exampleInputPassword1" placeholder="Password">
+            </div>
+
+            <button type="submit" class="btn btn-primary px-3 py-2 m-2">Submit</button>
+        </form>
+    </div>
+</ng-template>
+<!-- Login end -->
+
+
+<!-- Log-Out -->
+<ng-template #content2 let-modal>
+    <div class="modal-header m-2">
+        <h4 class="modal-title">SIGN-OUT</h4>
+        <button type="submit" class="btn btn-primary px-3 py-2">Sign out</button>
+    </div>
+</ng-template>
+<!-- Log-Out end -->
+
+
+<!-- Register -->
+<ng-template #content3 let-modal>
+    <div class="modal-header m-4">
+        <h4 class="modal-title">REGISTER</h4>
+        <button type="button" class="close px-1" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body m-4">
+        <form>
+            <div class="form-group m-2">
+                <label for="exampleInputName1">Name</label>
+                <input type="name" class="form-control p-2" id="exampleInputUser" placeholder="Enter Name*" required>
+            </div>
+            <div class="form-group m-2">
+                <label for="exampleInputLastName1">Last Name</label>
+                <input type="lastname" class="form-control p-2" id="exampleInputLastName" placeholder="Enter Last Name">
+            </div>
+            <div class="form-group m-2">
+                <label for="exampleInputPhone1">Phone</label>
+                <input type="phone number" class="form-control p-2" id="exampleInputPhone1" placeholder="Phone Number">
+            </div>
+            <div class="form-group m-2">
+                <label for="exampleInputAddress1">Address</label>
+                <input type="address" class="form-control p-2" id="exampleInputAddress1" placeholder="Address*" required>
+            </div>
+            <div class="form-group m-2 pt-4">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control p-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email*" required>
+            </div>
+            <div class="form-group m-2">
+                <label for="exampleInputEmail1">Confirm Email address</label>
+                <input type="email" class="form-control p-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Confirm Email address*" required>
+            </div>
+            <div class="form-group m-2 pt-4">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control p-2" id="exampleInputPassword1" placeholder="Password*" required>
+            </div>
+            <div class="form-group m-2">
+                <label for="exampleInputPassword1">Confirm Password</label>
+                <input type="password" class="form-control p-2" id="exampleInputPassword1" placeholder="Confirm Password*" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary px-3 py-2 m-2">Submit</button>
+        </form>
+    </div>
+</ng-template>
+<!-- Register end -->

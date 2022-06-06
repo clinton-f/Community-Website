@@ -1,0 +1,74 @@
+#   User Icon:
+##  Dropdow: When you click on the User Icon you see logout
+    and Admin button takes you to the Admin page 
+    (where you can edit users, etc...).
+
+##  Dashboard:
+##  Admin:
+____________________________________________________________
+
+#   Nav:
+##  Home, 
+##  Events listing page, 
+##  Jobs listing page, 
+##  Services listing page,
+##  Policy page
+
+
+#   Home:
+##  Hero: This section introduces the site.
+##  Events carousel
+##  Jobs carousel
+##  Services carousel
+
+
+#   Footer: 
+##  Info...
+
+
+#   Dashboard:
+##  From here you can create and edit Jobs, Events, Business cards.
+##  Shows all Events, Jobs, Business Cards created by you.
+
+1. Installed
+
+#   (ng-bootstrap 👽) ng add @ng-bootstrap/ng-bootstrap
+##  This is for installation of the whole ng components
+
+#   (bootstrap 👽) npm install bootstrap
+##  
+
+<li><a routerLink="/policy">POLICY</a></li>
+
+
+____________________________________________________________
+
+
+#   First Commit to Github
+##  Validations ✔️
+##  Add addBusinessCar() "const BUSINESSCARD: Services = {" Function in services.component.ts, and inport services
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+-------------------------------
+To start running the SERVER and MongoDB:
+
+Folder to be in:
+C:\Users\asus\Desktop\CMS-Web-App\Server
+
+Run Database Server:
+npm run dev
+
+Run Website Local Host:
+ng serve
+
+-------------------------------
+index.js to connect to the DATABASE and the SERVER
+
+services.js is the route that sends the post
+
+serviceController.js uses Mongoose to save.. the schema/jason body from BusinessCard.js...
+
+CONNECT THE FRONT WITH BACK:
+app.module.ts
+import { HttpClientModule } from '@angular/common/http'; 

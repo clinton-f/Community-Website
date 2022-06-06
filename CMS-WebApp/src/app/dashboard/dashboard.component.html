@@ -1,0 +1,178 @@
+<div class="dashboard" id="hero">
+
+    <div class="dasboard-container">
+
+        <div class="dasboard-container-header">
+
+            <h1 class="dasboardTittle">DASHBOARD</h1>
+
+            <div class="dasboard-container-header-title">
+
+                <div class="searchBar">
+                    <input type="text" name="search" [(ngModel)]="searchTextUser" id="typeahead-format" class="form-control" placeholder="Seach user." />
+                </div>
+
+            </div>
+
+            <hr class="hr1">
+
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+                <li [ngbNavItem]="1">
+                    <a ngbNavLink>USERS</a>
+                    <ng-template ngbNavContent>
+                        <div class="table-container">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Row</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Role</th>
+                                        <th> </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- -->
+                                    <tr *ngFor="let user of listUsers | filter:searchTextUser | paginate:{itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
+                                        <th scope="row">{{i+1}}</th>
+                                        <td>{{user.name}}</td>
+                                        <td>{{user.address}}</td>
+                                        <td>{{user.email}}</td>
+                                        <td>{{user.phone}}</td>
+                                        <td>User</td>
+                                        <td class="dasboardBtn">
+                                            <div class="edit-Btn" (click)="openUserPopUp(UserPopUp)" (click)="onEditUser(user)">EDIT</div>
+                                            <div class="delete-Btn" (click)="deleteUser(user._id)">DELETE</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+
+                        <hr class="hr2">
+                        <nav aria-label="Page navigation example" class="PageNavigation">
+
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item">
+                                    <pagination-controls class="page-link" previousLabel="PREV" nextLabel="NEXT" (pageChange)="onTableDataChange($event)"></pagination-controls>
+                                </li>
+                            </ul>
+                        </nav>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="2">
+                    <a ngbNavLink>CMS.</a>
+                    <ng-template ngbNavContent>
+                        <form [formGroup]="cmsForm" (keydown.enter)="updateCMS()">
+                            <div class="cms-container">
+                                <div class="cms-input">
+                                    <span>SITE INTRO: </span> <textarea formControlName="intro" id="site-intro" type="text" class="site-intro" rows="4" cols="55" placeholder="Charity Is An Act Of A Soft Heart."></textarea>
+                                </div>
+                                <div class="cms-input">
+                                    <span>SITE DESCRIPTION: </span> <textarea formControlName="sitedesc" id="site-description" type="text" class="site-description" rows="4" cols="55" placeholder="Weve spent the last 5 years helping over 25,000 teams just like yourself create and sustain successful online support."
+                                        maxlength="255">  </textarea>
+                                </div>
+                                <div class="cms-input">
+                                    <span>1ST. IMAGE DESCRIPTION: </span> <textarea formControlName="imgdesc" id="site-image-description" type="text" class="site-image-description" rows="4" cols="55" placeholder="Cobblestone Place the beautiful community of Clayton, NC "
+                                        maxlength="155"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </ng-template>
+                </li>
+            </ul>
+
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+            <pre>PAGE: {{ active }}</pre>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Users Form -->
+<ng-template #UserPopUp let-modal class="modal-content">
+    <div class="modal-header m-4">
+        <h4 class="modal-title">USER FORM</h4>
+        <button type="button" class="close px-1" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+    </div>
+
+    <div class="modal-body m-4">
+
+        <form [formGroup]="userForm" (ngSubmit)="updateUser()">
+            <div class="form-group m-2 pt-3">
+                <label>YOUR FULL NAME</label>
+
+                <div>
+                    <input formControlName="name" class="form-control p-2 w-100" placeholder="Enter your full name.*" required>
+                    <div class="text-danger" *ngIf="userForm.controls.name.invalid && (userForm.controls.name.dirty || userForm.controls.name.touched)">
+                        <span>
+                                        Your full name is required.
+                                    </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group m-2 pt-3">
+                <label>EMAIL ADDRESS</label>
+
+                <div>
+                    <input formControlName="email" type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control p-2 w-100" placeholder="Enter user email address.*" required>
+                    <div class="text-danger" *ngIf="userForm.controls.email.invalid && (userForm.controls.email.dirty || userForm.controls.email.touched)">
+                        <span *ngIf="userForm.get('email')?.hasError('required')">
+                                        Your email address is required. 📧 
+                                    </span>
+                        <span class="text-danger" *ngIf="userForm.get('email')?.hasError('pattern')">
+                                        Email Address must be a valid email address.
+                                    </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group m-2 pt-3">
+                <label>ADDRESS</label>
+
+                <div class="input-field ">
+                    <input formControlName="address" class="form-control p-2 w-100" placeholder="Please enter your address.*" maxlength="40" required>
+                    <div class="text-danger" *ngIf="userForm.controls.address.invalid && (userForm.controls.address.dirty || userForm.controls.address.touched)">
+                        <span *ngIf="userForm.get('address')?.hasError('required')">
+                                        Your addess is required.
+                                    </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group m-2 pt-3">
+                <label>PHONE NUMBER</label>
+
+                <div>
+                    <input formControlName="phone" pattern="^\d{3}\-\d{3}\-\d{4}$" class="form-control p-2 w-100" placeholder="Enter your phone number. 000-000-0000*" required>
+                    <div class="text-danger" *ngIf="userForm.controls.phone.invalid && (userForm.controls.phone.dirty || userForm.controls.phone.touched)">
+                        <span *ngIf="userForm.get('phone')?.hasError('required')">
+                                        Your phone number is required. ☎ 
+                                    </span>
+                        <span class="text-danger" *ngIf="userForm.get('phone')?.hasError('pattern')">
+                                        Phone number must be in valid format. 👉 000-000-0000
+                                    </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-2 w-100" class="d-flex justify-content-between mx-2">
+                <button (click)="modal.dismiss('Cross click')" type="submit" class="createEventBtn">SUBMIT</button>
+                <!-- <button (click)="modal.dismiss('Cross click')" type="button" class="createEventBtn" (click)="updateBusinessCard()">UPDATE</button> -->
+                <button type="reset" class="createEventBtn">RESET</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+<!-- User Form end -->

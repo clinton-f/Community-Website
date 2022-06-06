@@ -1,0 +1,578 @@
+<div id="hero">
+    <div class="jobs-container">
+
+        <div class="jobs-container-header">
+
+            <!-- Header -->
+            <header class="bg-dark py-5">
+                <div class="container px-5">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="text-center my-5">
+                                <h1 class="display-5 text-white mb-2 pt-5" id="Administer-title">Welcome to the Administer page!</h1>
+                                <p class="lead text-white-50 mb-4" id="Administer-Desc">In the Bulletin you can find the latest Event post, Business cards of neighbors who may offer a services you may need, and Jobs ads from your neighbors!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- <h1 class="jobTittle">CREATE</h1> -->
+
+            <div class="all-creates">
+
+
+                <div class="services">
+
+                    <button type="button" id="createBtn" class="createJobBtn" (click)="collapse1.toggle()" [attr.aria-expanded]="!isServsCollapsed" aria-controls="collapseExample1">
+                        SERVICE
+                      </button>
+
+                    <hr class="hr2">
+
+
+                    <div #collapse1="ngbCollapse" [(ngbCollapse)]="isServsCollapsed">
+
+                        <div class="jobs-container-header-title">
+
+                            <div class="searchBar">
+                                <input type="text" name="search" [(ngModel)]="searchTextBusiness" id="typeahead-format" class="form-control" placeholder="Seach services by date, name, etc." />
+                            </div>
+
+
+                            <div id="createJobBtn">
+                                <button (click)="onOpenClear()" class="createJobBtn" (click)="openServPopUp(ServPopUp)">ADD SERVICE</button>
+                            </div>
+
+                        </div>
+
+                        <hr class="hr1">
+
+                        <div class="job-card-container" *ngIf="listBusinesscards.length > 0">
+
+
+                            <div class="modal-body" id="serv-card" *ngFor="let businesscard of listBusinesscards | filter:searchTextBusiness">
+
+                                <form class="card" style="max-width: 400px; min-width: 400px; height: 225px;">
+
+
+
+                                    <div class="card-body">
+                                        <div class="card-contact1"><span>{{businesscard.phone}}</span><span>{{businesscard.name}}</span></div>
+                                        <div class="card-title1"><span>{{businesscard.email}}</span><span>{{businesscard.title}}</span></div>
+                                        <hr>
+
+                                        <div class="Business-Tittle">{{businesscard.bName}}</div>
+                                        <div class="Business-Services">{{businesscard.bServ}}</div>
+
+
+                                    </div>
+
+                                    <div class="Business-website">{{businesscard.website}}</div>
+
+                                    <div class="all-circles" style="text-align:center">
+                                        <span class="circle1">
+                                <span class="circle2">
+                                    <span class="circle3"></span>
+                                        </span>
+                                        </span>
+
+
+                                    </div>
+
+
+                                </form>
+
+                                <div id="servBtn">
+                                    <button (click)="onEditBusinesscard(businesscard)" (click)="openServPopUp(ServPopUp)" type="submit" class="createJobBtn" id="createCardBtn">EDIT</button>
+                                    <button (click)="deleteBusinessCard(businesscard._id)" class="createJobBtn" id="createCardBtn">DELETE</button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <h4 *ngIf="listBusinesscards.length == 0">There's has not been any business cards added to show.</h4>
+                    </div>
+
+
+
+                </div>
+
+                <div class="services">
+
+                    <button type="button" id="createBtn" class="createJobBtn" (click)="collapse2.toggle()" [attr.aria-expanded]="!isEventsCollapsed" aria-controls="collapseExample2">
+                        EVENTS
+                      </button>
+
+                    <hr class="hr2">
+
+
+                    <div #collapse2="ngbCollapse" [(ngbCollapse)]="isEventsCollapsed">
+
+                        <div class="jobs-container-header-title">
+
+                            <div class="searchBar">
+                                <input type="text" name="search" [(ngModel)]="searchTextEvent" id="typeahead-format" class="form-control" placeholder="Seach events by date, name, etc." />
+                            </div>
+
+
+                            <div id="createJobBtn">
+                                <button (click)="onOpenClear()" class="createJobBtn" (click)="openEventPopUp(EventPopUp)">ADD EVENT</button>
+                            </div>
+
+                        </div>
+
+                        <hr class="hr1">
+
+                        <div class="job-card-container" *ngIf="listEvents.length > 0">
+
+                            <div class="modal-body" id="event-card" *ngFor="let event of listEvents | filter:searchTextEvent">
+                                <form class="card" style="max-width: 400px; min-width: 400px;">
+
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{event.eventName}}</h5>
+                                        <hr>
+                                        <p class="card-text">{{event.eventDesc}}</p>
+                                        <hr>
+                                        <h6 class="card-contact-address"><span>Contact: {{event.email}}</span></h6>
+                                        <h6 class="card-contact-address"><span>Creator: {{event.creatorName}}</span></h6>
+                                        <h6 class="card-contact-address"><span>Location: {{event.eventLocation}}</span></h6>
+                                        <h6 class="card-date-time mt-3"><span>From: {{event.eventStart}}</span> <span>To: {{event.eventEnd}}</span></h6>
+                                    </div>
+                                </form>
+
+                                <div id="eventBtn">
+                                    <button (click)="onEditEvent(event)" (click)="openEventPopUp(EventPopUp)" class="createEventBtn">EDIT</button>
+                                    <button (click)="deleteEvent(event._id)" class="createEventBtn">DELETE</button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <h4 *ngIf="listBusinesscards.length == 0">There's has not been any events added to show.</h4>
+
+                    </div>
+                </div>
+
+
+                <div class="services">
+
+
+                    <button type="button" id="createBtn" class="createJobBtn" (click)="collapse3.toggle()" [attr.aria-expanded]="!isJobsCollapsed" aria-controls="collapseExample3">
+                            JOBS
+                    </button>
+
+                    <hr class="hr2">
+
+                    <div #collapse3="ngbCollapse" [(ngbCollapse)]="isJobsCollapsed">
+
+                        <div class="jobs-container-header-title">
+
+                            <div class="searchBar">
+                                <input type="text" name="search" [(ngModel)]="searchTextJob" id="typeahead-format" class="form-control" placeholder="Seach jobs by date, name, etc." />
+                            </div>
+
+
+                            <div id="createJobBtn">
+                                <button (click)="onOpenClear()" class="createJobBtn" (click)="openJobsPopUp(JobPopUp)">ADD JOB</button>
+                            </div>
+
+                        </div>
+
+                        <hr class="hr1">
+
+                        <div class="job-card-container" *ngIf="listJobs.length > 0">
+
+
+                            <div class="modal-body" id="event-card" *ngFor="let job of listJobs | filter:searchTextJob">
+                                <form class="card " style="max-width: 400px; min-width: 400px;">
+
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{job.jobName}}</h5>
+                                        <hr>
+                                        <p class="card-text">{{job.jobDesc}}</p>
+                                        <hr>
+                                        <h6 class="card-contact-address"><span>Email: {{job.email}}</span></h6>
+                                        <h6 class="card-contact-address"><span>Creator: {{job.creatorName}}</span></h6>
+                                        <h6 class="card-contact-address"><span>Location: {{job.jobLocation}}</span></h6>
+                                        <h6 class="card-date-time"><span>Phone: {{job.phone}}</span></h6>
+                                    </div>
+                                </form>
+
+                                <div id="eventBtn">
+                                    <button (click)="onEditJob(job)" (click)="openJobsPopUp(JobPopUp)" class="createEventBtn">EDIT</button>
+                                    <button (click)="deleteJob(job._id)" class="createEventBtn">DELETE</button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <h4 *ngIf="listJobs.length == 0">There's has not been any jobs added to show.</h4>
+
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+
+
+            <!-- Services Form -->
+            <ng-template #ServPopUp let-modal class="modal-content">
+                <div class="modal-header m-4">
+                    <h4 class="modal-title">BUSINESS CARD FORM</h4>
+                    <button type="button" class="close px-1" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body m-4">
+
+                    <form [formGroup]="businessCardForm" (ngSubmit)="createBusinessCard()">
+                        <div class="form-group m-2 pt-3">
+                            <label>BUSINESS NAME</label>
+
+                            <div>
+                                <input formControlName="bName" class="form-control p-2 w-100" placeholder="Enter business name.*" required>
+                                <div class="text-danger" *ngIf="businessCardForm.controls.bName.invalid && (businessCardForm.controls.bName.dirty || businessCardForm.controls.bName.touched)">
+                                    <span>
+                                        Business name is required.
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group m-2 pt-3">
+                            <label>BUSINESS SERVICES</label>
+
+                            <div class="input-field ">
+                                <input formControlName="bServ" class="form-control p-2 w-100" placeholder="What services do you offer.*" maxlength="40" required>
+                                <div class="text-danger" *ngIf="businessCardForm.controls.bServ.invalid && (businessCardForm.controls.bServ.dirty || businessCardForm.controls.bServ.touched)">
+                                    <span *ngIf="businessCardForm.get('bServ')?.hasError('required')">
+                                        Business services is required.
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group m-2 pt-3">
+                            <label>EMAIL ADDRESS</label>
+
+                            <div>
+                                <input formControlName="email" type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control p-2 w-100" placeholder="Enter business email address.*" required>
+                                <div class="text-danger" *ngIf="businessCardForm.controls.email.invalid && (businessCardForm.controls.email.dirty || businessCardForm.controls.email.touched)">
+                                    <span *ngIf="businessCardForm.get('email')?.hasError('required')">
+                                        Business email address is required. 📧 
+                                    </span>
+                                    <span class="text-danger" *ngIf="businessCardForm.get('email')?.hasError('pattern')">
+                                        Email Address must be a valid email address.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-2 pt-3">
+                            <label>PHONE NUMBER</label>
+
+                            <div>
+                                <input formControlName="phone" pattern="^\d{3}\-\d{3}\-\d{4}$" class="form-control p-2 w-100" placeholder="Enter business phone number. 000-000-0000*" required>
+                                <div class="text-danger" *ngIf="businessCardForm.controls.phone.invalid && (businessCardForm.controls.phone.dirty || businessCardForm.controls.phone.touched)">
+                                    <span *ngIf="businessCardForm.get('phone')?.hasError('required')">
+                                        Business phone number is required. ☎ 
+                                    </span>
+                                    <span class="text-danger" *ngIf="businessCardForm.get('phone')?.hasError('pattern')">
+                                        Phone number must be in valid format. 👉 000-000-0000
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-2 pt-3">
+                            <label>WEBSITE</label>
+
+                            <div class="input-field ">
+                                <input formControlName="website" class="form-control p-2 w-100" placeholder="www.website.com 💻" required>
+                                <!-- <div class="text-danger">
+                                    <span>
+                                        Business website is required.
+                                    </span>
+                                </div> -->
+                            </div>
+                        </div>
+
+                        <div class="form-group m-2 pt-3">
+                            <label>YOUR NAME</label>
+
+                            <div class="input-field ">
+                                <input formControlName="name" class="form-control p-2 w-100" placeholder="Enter your name.*" required>
+                                <div class="text-danger" *ngIf="businessCardForm.controls.name.invalid && (businessCardForm.controls.name.dirty || businessCardForm.controls.name.touched)">
+                                    <span *ngIf="businessCardForm.get('name')?.hasError('required')">
+                                        Business your name is required.
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group m-2 pt-3 mb-4">
+                            <label>YOUR TITLE</label>
+
+                            <div class="input-field ">
+                                <input formControlName="title" class="form-control p-2 w-100" placeholder="Enter your job title.*" required>
+                                <div class="text-danger" *ngIf="businessCardForm.controls.title.invalid && (businessCardForm.controls.title.dirty || businessCardForm.controls.title.touched)">
+                                    <span *ngIf="businessCardForm.get('title')?.hasError('required')">
+                                        Your business or job title is required.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-2 w-100" class="d-flex justify-content-between mx-2">
+                            <button (click)="modal.dismiss('Cross click')" type="submit" class="createEventBtn">SUBMIT</button>
+                            <!-- <button (click)="modal.dismiss('Cross click')" type="button" class="createEventBtn" (click)="updateBusinessCard()">UPDATE</button> -->
+                            <button type="reset" class="createEventBtn">RESET</button>
+                        </div>
+                    </form>
+                </div>
+            </ng-template>
+            <!-- Services Form end -->
+
+
+            <!-- Event Card -->
+            <ng-template #EventPopUp let-modal>
+                <div class="modal-header m-4">
+                    <h4 class="modal-title">EVENT CARD FORM</h4>
+                    <button type="button" class="close px-1" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body m-4">
+
+                    <form [formGroup]="eventForm" (ngSubmit)="createEvent()">
+
+                        <div class="form-group m-2 pt-3">
+                            <label>EVENT NAME</label>
+
+                            <div>
+                                <input formControlName="eventName" class="form-control p-2 w-100" placeholder="Enter event name.*" required>
+                                <div class="text-danger" *ngIf="eventForm.controls.eventName.invalid && (eventForm.controls.eventName.dirty || eventForm.controls.eventName.touched)">
+                                    <span>
+                                        Event name is required.
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group m-2 pt-3">
+                            <label>EVENT DESCRIPTION</label>
+
+                            <div>
+                                <textarea formControlName="eventDesc" style="height: 170px;" class="form-control p-2 w-100 " placeholder="Please give as much description about the event necessary... 
+Maximum characters = 255* " required maxlength="255"></textarea>
+                                <div class="text-danger" *ngIf="eventForm.controls.eventDesc.invalid && (eventForm.controls.eventDesc.dirty || eventForm.controls.eventDesc.touched)">
+                                    <span>
+                                        Event description is required. 📃
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group m-2 pt-3">
+                            <label>CONTACT EMAIL</label>
+
+                            <div>
+                                <input formControlName="email" type="email" pattern="^[A-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control p-2 w-100" placeholder="Enter contact email.* John@email.com" required>
+                                <div class="text-danger" *ngIf="eventForm.controls.email.invalid && (eventForm.controls.email.dirty || eventForm.controls.email.touched)">
+                                    <span *ngIf="eventForm.get('email')?.hasError('required')">
+                                        Contact email address is required. 📧
+                                    </span>
+                                    <span class="text-danger" *ngIf="eventForm.get('email')?.hasError('pattern')">
+                                        Email Address must be a valid email address.
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group m-2 pt-3">
+                            <label>CREATOR NAME</label>
+
+                            <div>
+                                <input formControlName="creatorName" class="form-control p-2 w-100" placeholder="Enter creator name.*" required>
+                                <div class="text-danger" *ngIf="eventForm.controls.creatorName.invalid && (eventForm.controls.creatorName.dirty || eventForm.controls.creatorName.touched)">
+                                    <span *ngIf="eventForm.get('creatorName')?.hasError('required')">
+                                         Creator name required.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-2 pt-3">
+                            <label>LOCATION</label>
+
+                            <div>
+                                <input formControlName="eventLocation" class="form-control p-2 w-100" placeholder="Enter location of the event.*" required>
+                                <div class="text-danger" *ngIf="eventForm.controls.eventLocation.invalid && (eventForm.controls.eventLocation.dirty || eventForm.controls.eventLocation.touched)">
+                                    <span *ngIf="eventForm.get('eventLocation')?.hasError('required')">
+                                         Event location required. 📍
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-2 pt-3">
+                            <label>START DATE</label>
+
+                            <div>
+                                <input formControlName="eventStart" pattern="^([0-1]{0,1}[1-2]{1}|[0]?[1-9]{1}|[1]{1}[0]{1})\/([0-3]{0,1}[0-1]{1}|[0-1]?[1-9]{1})\/([0-9]{1}[0-9]{1})$" class="form-control p-2 w-100" placeholder="Enter event start date.*  12/3/22 At: 2:30p" required>
+                                <div class="text-danger" *ngIf="eventForm.controls.eventStart.invalid && (eventForm.controls.eventStart.dirty || eventForm.controls.eventStart.touched)">
+                                    <span *ngIf="eventForm.get('eventStart')?.hasError('required')">
+                                         Event start date required. 📅
+                                    </span>
+                                </div>
+                                <span *ngIf="eventForm.get('eventStart')?.hasError('pattern')">
+                                        Start date must be in valid form. 01/01/01
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-2 pt-3  mb-4">
+                            <label>END DATE</label>
+
+                            <div>
+                                <input formControlName="eventEnd" pattern="^([0-1]{0,1}[1-2]{1}|[0]?[1-9]{1}|[1]{1}[0]{1})\/([0-3]{0,1}[0-1]{1}|[0-1]?[1-9]{1})\/([0-9]{1}[0-9]{1})$" class="form-control p-2 w-100" placeholder="Enter event end day.*  12/3/22 At: 2:30p" required>
+                                <div class="text-danger" *ngIf="eventForm.controls.eventEnd.invalid && (eventForm.controls.eventEnd.dirty || eventForm.controls.eventEnd.touched)">
+                                    <span *ngIf="eventForm.get('eventEnd')?.hasError('required')">
+                                         Event end day required. 📅
+                                    </span>
+                                </div>
+                                <span *ngIf="eventForm.get('eventEnd')?.hasError('pattern')">
+                                    Event end day must be in valid form. 01/01/01
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="m-2 w-100" class="d-flex justify-content-between mx-2">
+                            <button type="submit" value="Submit" class="createEventBtn" (click)="modal.dismiss('Cross click')">SUBMIT</button>
+                            <!-- <button type="button" class="createEventBtn" (click)="modal.dismiss('Cross click')" (click)="updateEvent()">UPDATE</button> -->
+                            <button type="reset" class="createEventBtn">RESET</button>
+                        </div>
+                    </form>
+                </div>
+            </ng-template>
+            <!-- Event Card end -->
+
+
+            <!-- Job Card -->
+            <ng-template #JobPopUp let-modal>
+                <div class="modal-header m-4">
+                    <h4 class="modal-title">JOB CARD FORM</h4>
+                    <button type="button" class="close px-1" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body m-4">
+
+                    <form [formGroup]="jobForm" (ngSubmit)="createJob()">
+                        <div class="form-group m-2 pt-3">
+                            <label>JOB TITTLE</label>
+
+                            <div>
+                                <input formControlName="jobName" class="form-control p-2 w-100" placeholder="Enter event name.*" maxlength="40" required>
+                                <div class="text-danger" *ngIf="jobForm.controls.jobName.invalid && (jobForm.controls.jobName.dirty || jobForm.controls.jobName.touched)">
+                                    <span>
+                                        Job name is required.
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group m-2 pt-3">
+                            <label>JOB DESCRIPTION</label>
+
+                            <div>
+                                <textarea formControlName="jobDesc" style="height: 170px;" class="form-control p-2 w-100 " placeholder="Please give as much description about the job necessary... 
+Maximum characters = 255* " required maxlength="255"></textarea>
+                                <div class="text-danger" *ngIf="jobForm.controls.jobDesc.invalid && (jobForm.controls.jobDesc.dirty || jobForm.controls.jobDesc.touched)">
+                                    <span>
+                                         Job description required. 📃
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group m-2 pt-3">
+                            <label>CONTACT EMAIL</label>
+
+                            <div>
+                                <input formControlName="email" class="form-control p-2 w-100" pattern="^[A-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Enter contact email.*" required>
+                                <div class="text-danger" *ngIf="jobForm.controls.email.invalid && (jobForm.controls.email.dirty || jobForm.controls.email.touched)">
+                                    <span *ngIf="jobForm.get('email')?.hasError('required')">
+                                        Contact email address is required. 📧
+                                    </span>
+                                    <span class="text-danger" *ngIf="jobForm.get('email')?.hasError('pattern')">
+                                        Email Address must be a valid email address.
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group m-2 pt-3">
+                            <label>CREATOR NAME</label>
+
+                            <div>
+                                <input formControlName="creatorName" class="form-control p-2 w-100" placeholder="Enter creator name.*" required>
+                                <div class="text-danger" *ngIf="jobForm.controls.creatorName.invalid && (jobForm.controls.creatorName.dirty || jobForm.controls.creatorName.touched)">
+                                    <span>
+                                         Creator name required.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-2 pt-3">
+                            <label>LOCATION</label>
+
+                            <div>
+                                <input formControlName="jobLocation" class="form-control p-2 w-100" placeholder="Please enter job location.*" required>
+                                <div class="text-danger" *ngIf="jobForm.controls.jobLocation.invalid && (jobForm.controls.jobLocation.dirty || jobForm.controls.jobLocation.touched)">
+                                    <span>
+                                         Job location required. 📍
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-2 pt-3">
+                            <label>PHONE NUMBER</label>
+
+                            <div>
+                                <input formControlName="phone" class="form-control p-2 w-100" pattern="^\d{3}\-\d{3}\-\d{4}$" placeholder="Please enter contact phone number. 000-000-0000*" required>
+                                <div class="text-danger" *ngIf="jobForm.controls.phone.invalid && (jobForm.controls.phone.dirty || jobForm.controls.phone.touched)">
+                                    <span>
+                                         Contact phone number is required. ☎ 
+                                    </span>
+                                    <span class="text-danger" *ngIf="jobForm.get('phone')?.hasError('pattern')">
+                                        Phone number must be in valid format. 👉 000-000-0000
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-2 w-100" class="d-flex justify-content-between mx-2">
+                            <button (click)="modal.dismiss('Cross click')" type="submit" class="createEventBtn">SUBMIT</button>
+                            <button (click)="modal.dismiss('Cross click')" type="button" class="createEventBtn">UPDATE</button>
+                            <button type="reset" class="createEventBtn">RESET</button>
+                        </div>
+                    </form>
+                </div>
+            </ng-template>
+            <!-- Job Card end -->
+
+        </div>
+    </div>
