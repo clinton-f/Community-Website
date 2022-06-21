@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit {
   _subscription!: Subscription;
   donateForm: FormGroup;
 
+  frontText: string[] = ['Some intro title for the front', 'Orange', 'Banana'];
+
   constructor(
     private modalService: NgbModal, 
     private fb: FormBuilder,

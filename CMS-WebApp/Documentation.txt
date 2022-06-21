@@ -59,9 +59,11 @@ C:\Users\asus\Desktop\CMS-Web-App\Server
 Run Database Server:
 npm run dev
 
-Run Website Local Host:
+To start the Front side:
 ng serve
 
+Folder to be in:
+C:\Users\asus\Desktop\CMS-Web-App\CMS-WebApp
 -------------------------------
 index.js to connect to the DATABASE and the SERVER
 

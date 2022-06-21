@@ -55,6 +55,26 @@ nav ul li a {
     margin-left: 10PX;
 }
 
+@media screen and (max-width: 1230px) {
+    nav ul li a {
+        font-size: 17px;
+        font-weight: 500;
+        width: 90px;
+        height: 40px;
+        margin-left: 10PX;
+    }
+}
+
+@media screen and (max-width: 1108px) {
+    nav ul li a {
+        font-size: 17px;
+        font-weight: 500;
+        width: 80px;
+        height: 40px;
+        margin-left: 10PX;
+    }
+}
+
 nav ul li a:hover,
 a.active {
     background: #26693a;
