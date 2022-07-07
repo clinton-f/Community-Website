@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 // For Validation and Registration
 import { CMSServ, UserServ } from '../models/services';
 
@@ -33,17 +33,20 @@ export class DashboardComponent implements OnInit {
   tableSizes: any = [5, 10, 15, 20];
 
 
+  _id: any;
+
   constructor(
     private modalService: NgbModal, 
     private userfb: FormBuilder,
     private _userService: UserService,
     private _CMSService: CMSService,
 
-    private router: Router
+    private router: Router,
+    private aRouter: ActivatedRoute
     ) {
       //Form Validation
     this.userForm = this.userfb.group({
-        //_id: ['', Validators.required],
+        _id: [''],
         name: ['', Validators.required],
         email: ['', Validators.required],
         address: ['', Validators.required],
@@ -58,6 +61,7 @@ export class DashboardComponent implements OnInit {
       imgdesc: ['', ""],
       //imgurl: ['', ""],
      });
+     this._id = this.aRouter.snapshot.paramMap.get('_id');
   }
 
 //   createUser() {
@@ -78,19 +82,49 @@ export class DashboardComponent implements OnInit {
 //   });
 // }
 
-  onEditUser(user: any) {
-    this._userService.getUser(user._id).subscribe((data: any) => {
-      this.userForm.controls['name'].setValue(user.name);
-      this.userForm.controls['email'].setValue(user.email);
-      this.userForm.controls['address'].setValue(user.address);
-      this.userForm.controls['phone'].setValue(user.phone);
-  })}
+  // onEditUser(user: any) {
+  //   this._userService.getUser(user._id).subscribe((data: any) => {
+  //     this.userForm.controls['name'].setValue(user.name);
+  //     this.userForm.controls['email'].setValue(user.email);
+  //     this.userForm.controls['address'].setValue(user.address);
+  //     this.userForm.controls['phone'].setValue(user.phone);
+  // })}
 
   // onEditCMS(cms: any) {
   //   this._CMSService.getCMS(cms._id).subscribe((data: any) => {
   //     this.userForm.controls['intro'].setValue(cms.intro);
   //     this.userForm.controls['sitedesc'].setValue(cms.sitedesc);
   // })}
+
+
+  onEditUser(user: any) {
+      this.userForm.controls['_id'].setValue(user._id);
+      this.userForm.controls['name'].setValue(user.name);
+      this.userForm.controls['email'].setValue(user.email);
+      this.userForm.controls['address'].setValue(user.address);
+      this.userForm.controls['phone'].setValue(user.phone);
+  }
+
+  updateUser() {
+      const USERFORM: UserServ = {
+        //_id: this.userForm.get('_id')?.value,
+        name: this.userForm.get('name')?.value,
+        email: this.userForm.get('email')?.value,
+        address: this.userForm.get('address')?.value,
+        phone: this.userForm.get('phone')?.value,
+        password: this.userForm.get('password')?.value,
+    }
+    let id = this.userForm.get('_id')?.value;
+
+    if(id != null){
+    console.log("If: Updating Job");
+    this._userService.updateUser(id, USERFORM).subscribe((data: any) => {
+      this.router.navigate(['/dashboard']);
+    }, error => {
+      console.log(error);
+      this.userForm.reset();
+    });
+  }}
 
   ngOnInit(): void {
 
@@ -135,23 +169,7 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  updateUser() {
-  //   const USERFORM: UserServ = {
-  //     //_id: this.userForm.get('_id')?.value,
-  //     name: this.userForm.get('name')?.value,
-  //     email: this.userForm.get('email')?.value,
-  //     address: this.userForm.get('address')?.value,
-  //     phone: this.userForm.get('phone')?.value,
-  //     password: this.userForm.get('password')?.value,
-  // }
-  // console.log(USERFORM);
-  // this._userService.updateUser(USERFORM).subscribe((data: any) => {
-  // }, (error: any) => {
-  //   console.log(error);
-  //   this.userForm.reset();
-  //   this.router.navigate(['/dashboard']);
-  // });
-}
+
 
 
   getCMS() {

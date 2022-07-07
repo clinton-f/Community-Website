@@ -107,6 +107,7 @@
     <div class="modal-body m-4">
 
         <form [formGroup]="userForm" (ngSubmit)="updateUser()">
+            <input type="hidden" formControlName="_id" />
             <div class="form-group m-2 pt-3">
                 <label>YOUR FULL NAME</label>
 
@@ -169,7 +170,6 @@
 
             <div class="m-2 w-100" class="d-flex justify-content-between mx-2">
                 <button (click)="modal.dismiss('Cross click')" type="submit" class="createEventBtn">SUBMIT</button>
-                <!-- <button (click)="modal.dismiss('Cross click')" type="button" class="createEventBtn" (click)="updateBusinessCard()">UPDATE</button> -->
                 <button type="reset" class="createEventBtn">RESET</button>
             </div>
         </form>

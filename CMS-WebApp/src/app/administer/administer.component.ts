@@ -87,9 +87,6 @@ export class AdministerComponent implements OnInit {
     phone: ['', Validators.required],
   });
   this._id = this.aRouter.snapshot.paramMap.get('_id');
-  // Looks for the Html id="cancel"
-  // let ref =  document.getElementById('close');
-  // ref?.click();
 
 }
 
@@ -282,7 +279,6 @@ createJob() {
     this.businessCardForm.controls['website'].setValue(businesscard.website);
     this.businessCardForm.controls['bName'].setValue(businesscard.bName);
     this.businessCardForm.controls['bServ'].setValue(businesscard.bServ);
-    //})
   }
 
 
