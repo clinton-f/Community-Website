@@ -56,6 +56,7 @@ export class AdministerComponent implements OnInit {
   ) {
     //Form Validation
   this.businessCardForm = this.bcfb.group({
+      _id: [''],
       name: ['', Validators.required], 
       title: ['', Validators.required],
       email: ['', Validators.required],
@@ -66,6 +67,7 @@ export class AdministerComponent implements OnInit {
   });
 
   this.eventForm = this.evntfb.group({
+    _id: [''],
     eventName: ['', Validators.required],
     eventDesc: ['', Validators.required],
     email: ['', Validators.required],
@@ -76,6 +78,7 @@ export class AdministerComponent implements OnInit {
   });
   
   this.jobForm = this.jbfb.group({
+    _id: [''],
     jobName: ['', Validators.required],
     jobDesc: ['', Validators.required],
     email: ['', Validators.required],
@@ -118,8 +121,9 @@ openJobsPopUp(JobPopUp: any) {
 public isJobsCollapsed = true;
 
 
-//To add... CRUD
+
 createBusinessCard() {
+  
   const BUSINESSCARD: BusinessCardServ = {
     name: this.businessCardForm.get('name')?.value,
     title: this.businessCardForm.get('title')?.value,
@@ -129,9 +133,10 @@ createBusinessCard() {
     bName: this.businessCardForm.get('bName')?.value,
     bServ: this.businessCardForm.get('bServ')?.value,
   } 
-  if(this._id !== null){
+  let id = this.businessCardForm.get('_id')?.value;
+  if(id !== null){
   console.log("If: Updating Business Card");
-  this._businessCardService.updateBusinessCard(this._id, BUSINESSCARD).subscribe((data: any) => {
+  this._businessCardService.updateBusinessCard(id, BUSINESSCARD).subscribe((data: any) => {
     this.router.navigate(['/administer']);
   }, error => {
     console.log(error);
@@ -149,11 +154,8 @@ createBusinessCard() {
 }
 
 
-
-
-
-
 createEvent() {
+
   const EVENTFORM: EventServ = {
     eventName: this.eventForm.get('eventName')?.value,
     eventDesc: this.eventForm.get('eventDesc')?.value,
@@ -163,13 +165,24 @@ createEvent() {
     eventStart: this.eventForm.get('eventStart')?.value,
     eventEnd: this.eventForm.get('eventEnd')?.value,
   }
-  console.log(EVENTFORM);
-  this._eventService.createEvent(EVENTFORM).subscribe((data: any) => {
+  let id = this.eventForm.get('_id')?.value;
+  if(id !== null){
+  console.log("If: Updating Event");
+  this._eventService.updateEvent(id, EVENTFORM).subscribe((data: any) => {
+    this.router.navigate(['/administer']);
   }, error => {
     console.log(error);
     this.eventForm.reset();
-    this.router.navigate(['/administer']);
   })
+} else {
+  console.log("Else: Creating Event");
+  this._eventService.createEvent(EVENTFORM).subscribe((data: any) => {
+    this.router.navigate(['/administer']);
+  }, error => {
+    console.log(error);
+    this.eventForm.reset();
+  })
+}
 }
 
 
@@ -183,13 +196,25 @@ createJob() {
     jobLocation: this.jobForm.get('jobLocation')?.value,
     phone: this.jobForm.get('phone')?.value,
   }
-  console.log(JOBFORM);
-  this._jobService.createJob(JOBFORM).subscribe((data: any) => {
+  //Holding value of _id in id
+  let id = this.jobForm.get('_id')?.value;
+  if(id !== null){
+  console.log("If: Updating Job");
+  this._jobService.updateJob(id, JOBFORM).subscribe((data: any) => {
+    this.router.navigate(['/administer']);
   }, error => {
     console.log(error);
     this.jobForm.reset();
-    this.router.navigate(['/administer']);
   })
+} else {
+  console.log("Else: Creating Job");
+  this._jobService.createJob(JOBFORM).subscribe((data: any) => {
+    this.router.navigate(['/administer']);
+  }, error => {
+    console.log(error);
+    this.jobForm.reset();
+  })
+}
 }
 
   ngOnInit(): void {
@@ -249,6 +274,7 @@ createJob() {
 
   // To Automatically Fill the business card form with the data
   onEditBusinesscard(businesscard: any) {
+    this.businessCardForm.controls['_id'].setValue(businesscard._id);
     this.businessCardForm.controls['name'].setValue(businesscard.name);
     this.businessCardForm.controls['title'].setValue(businesscard.title);
     this.businessCardForm.controls['email'].setValue(businesscard.email);
@@ -262,6 +288,7 @@ createJob() {
 
   // To Automatically Fill the event form with the data
   onEditEvent(event: any) {
+    this.eventForm.controls['_id'].setValue(event._id);
     this.eventForm.controls['eventName'].setValue(event.eventName);
     this.eventForm.controls['eventDesc'].setValue(event.eventDesc);
     this.eventForm.controls['email'].setValue(event.email);
@@ -273,6 +300,7 @@ createJob() {
 
   // To Automatically Fill the job form with the data
   onEditJob(job: any) {
+    this.jobForm.controls['_id'].setValue(job._id);
     this.jobForm.controls['jobName'].setValue(job.jobName);
     this.jobForm.controls['jobDesc'].setValue(job.jobDesc);
     this.jobForm.controls['email'].setValue(job.email);

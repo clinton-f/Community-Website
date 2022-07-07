@@ -46,10 +46,10 @@ exports.updateBusinessCard = async(req, res) => {
         businessCard.website = website;
         businessCard.bName = bName;
         businessCard.bServ = bServ;
-        delete businessCard._id;
-        // findByOneAndUpdate
-        // findByIdAndUpdate
-        businessCard = await BusinessCard.findByOneAndUpdate({ _id: req.params._id }, businessCard, { new: true })
+        //delete businessCard._id;
+        //findByIdAndUpdate
+        //findOneAndUpdate
+        businessCard = await BusinessCard.findOneAndUpdate({ _id: req.params._id }, businessCard, { new: true })
         res.json(businessCard);
 
     } catch (error) {

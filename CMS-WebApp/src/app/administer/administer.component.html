@@ -227,6 +227,7 @@
                 <div class="modal-body m-4">
 
                     <form [formGroup]="businessCardForm" (ngSubmit)="createBusinessCard()">
+                        <input type="hidden" formControlName="_id">
                         <div class="form-group m-2 pt-3">
                             <label>BUSINESS NAME</label>
 
@@ -349,7 +350,7 @@
                 <div class="modal-body m-4">
 
                     <form [formGroup]="eventForm" (ngSubmit)="createEvent()">
-
+                        <input type="hidden" formControlName="_id">
                         <div class="form-group m-2 pt-3">
                             <label>EVENT NAME</label>
 
@@ -477,6 +478,7 @@ Maximum characters = 255* " required maxlength="255"></textarea>
                 <div class="modal-body m-4">
 
                     <form [formGroup]="jobForm" (ngSubmit)="createJob()">
+                        <input type="hidden" formControlName="_id">
                         <div class="form-group m-2 pt-3">
                             <label>JOB TITTLE</label>
 
@@ -566,7 +568,6 @@ Maximum characters = 255* " required maxlength="255"></textarea>
                         </div>
                         <div class="m-2 w-100" class="d-flex justify-content-between mx-2">
                             <button (click)="modal.dismiss('Cross click')" type="submit" class="createEventBtn">SUBMIT</button>
-                            <button (click)="modal.dismiss('Cross click')" type="button" class="createEventBtn">UPDATE</button>
                             <button type="reset" class="createEventBtn">RESET</button>
                         </div>
                     </form>
