@@ -554,3 +554,12 @@ img {
     font-size: 22px;
     font-weight: 500;
 }
+
+@media screen and (max-width: 400px) {
+    form {
+        margin: 10px;
+    }
+    .social a {
+        font-size: 15px;
+    }
+}
