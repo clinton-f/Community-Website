@@ -2,13 +2,3 @@ cms-app123
 
 mongodb+srv://Clinton:cms-app123@cluster0.smbnb.mongodb.net/CMS-Database
 
-
-{
-    "Business Name": "Some Business Name",
-    "Business Services": "Paving",
-    "Email": "SomeEmail@Business.com",
-    "Phone": "978-222-5262",
-    "Website": "www.thesite.co",
-    "Your Name": "Some Name",
-    "Your Title": "Manager"
-}

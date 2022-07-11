@@ -4,6 +4,7 @@
     "description": "MEAN API",
     "main": "index.js",
     "scripts": {
+        "start": "node index.js",
         "dev": "nodemon ."
     },
     "author": "Clinton F",
