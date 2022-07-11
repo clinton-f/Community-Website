@@ -22,7 +22,8 @@ app.use('/api/jobs', require('./routes/jobs'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/cms', require('./routes/cms'));
 
-const port = 4000;
-app.listen(4000, () => {
+//const port = 4000;
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
     console.log(`Server is running on port ${port}...📡`);
-})
+});

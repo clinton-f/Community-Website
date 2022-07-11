@@ -9,7 +9,7 @@ import { Subject, Observable } from 'rxjs';
   })
 
 export class UserService{
-    url = 'http://localhost:4000/api/users/';
+    url = 'https://cobblestone-place.herokuapp.com/api/users/';
   
     private _refresh$ = new Subject<void>();
   

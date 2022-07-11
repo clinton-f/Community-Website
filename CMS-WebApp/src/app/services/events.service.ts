@@ -13,7 +13,7 @@ import { tap } from 'rxjs/operators';
 
 
 export class EventService{
-    url = 'http://localhost:4000/api/events/';
+    url = 'https://cobblestone-place.herokuapp.com/api/events/';
   
     private _refresh$ = new Subject<void>();
   
