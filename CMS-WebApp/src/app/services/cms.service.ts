@@ -9,7 +9,7 @@ import { Subject, Observable } from 'rxjs';
   })
 
 export class CMSService{
-    url = 'https://cobblestone-place.herokuapp.com/api/cms/';
+    url = 'https://cobblestone-place.netlify.app/api/cms/';
   
     private _refresh$ = new Subject<void>();
   
