@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-const dotenv = require("dotenv");
-dotenv.config();
 
 // Getting the environment variables from the variables.env file
 require('dotenv').config({ path: 'variables.env' });
