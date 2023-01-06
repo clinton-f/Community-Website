@@ -1,12 +1,8 @@
 const mongoose = require('mongoose');
 
-//++ 
-//const dotenv = require('dotenv');
-//dotenv.config({path:'./config/config.env'});
-
-
-// Getting the environment variables from the variables.env file
-require('dotenv').config({ path: 'variables.env' });
+//++ -
+const dotenv = require('dotenv');
+dotenv.config({path:'./config/variables.env'});
 
 const connectDB = async() => {
     try {
