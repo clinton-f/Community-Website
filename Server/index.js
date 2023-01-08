@@ -10,6 +10,7 @@ const cors = require('cors');
 connectDB();
 app.use(cors());
 
+
 //Middleware
 app.use(express.json());
 
