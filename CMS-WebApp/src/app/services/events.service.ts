@@ -13,7 +13,7 @@ import { tap } from 'rxjs/operators';
 
 
 export class EventService{
-    url = 'https://cobblestone-place.netlify.app/api/events/';
+    url = 'https://community-website-cms.onrender.com/api/events/';
   
     private _refresh$ = new Subject<void>();
   

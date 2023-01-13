@@ -9,7 +9,7 @@ import { Observable, Subject } from 'rxjs';
   })
 
 export class JobService{
-    url = 'https://cobblestone-place.netlify.app/api/jobs/';
+    url = 'https://community-website-cms.onrender.com/api/jobs/';
   
     private _refresh$ = new Subject<void>();
   
