@@ -8,7 +8,7 @@ const cors = require('cors');
 
 // Connect Database
 connectDB();
-app.use(cors());
+app.use(cors({origin: 'https://cobblestone-place.netlify.app'}));
 
 
 //Middleware
