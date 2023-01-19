@@ -6,7 +6,7 @@ const cors = require('cors');
 
 
 //Middleware
-//app.use(express.json());
+//app.use(express.json()); Updating the Middleware in order to allow the specific frontend URL to access it.
 app.use(express.json(
     (req, res, next) => {
       res.header('Access-Control-Allow-Origin', '*');
