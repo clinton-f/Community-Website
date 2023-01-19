@@ -30,7 +30,7 @@ app.use(express.json(
 
 // Connect Database
 connectDB();
-app.use(cors({origin: 'https://cobblestone-place.netlify.app'}));
+app.use(cors({origin: 'https://community-website-cms.onrender.com'}));
 
 
 
