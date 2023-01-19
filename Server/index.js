@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 
 // Connect Database
 connectDB();
-app.use(cors({origin: 'https://community-website-cms.onrender.com'}));
+//app.use(cors({origin: 'https://community-website-cms.onrender.com'}));
 
 
 
