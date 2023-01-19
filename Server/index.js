@@ -5,14 +5,14 @@ const connectDB = require('./config/db');
 const cors = require('cors');
 
 
-
+//Middleware
+app.use(express.json());
 // Connect Database
 connectDB();
 app.use(cors());
 
 
-//Middleware
-app.use(express.json());
+
 
 //app.use('/api/services', require('../src/app/services/services'));
 
