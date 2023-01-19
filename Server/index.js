@@ -15,7 +15,7 @@ app.use(express.json(
 
     app.get('/api/cms', (req, res) => {
       request(
-        { url: https://community-website-cms.onrender.com' },
+        { url: 'https://community-website-cms.onrender.com' },
         (error, response, body) => {
           if (error || response.statusCode !== 200) {
             return res.status(500).json({ type: 'error', message: err.message });
