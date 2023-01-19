@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false
+  //,
+  //apiUrl:"https://community-website-cms.onrender.com/api"
 };
 
 /*

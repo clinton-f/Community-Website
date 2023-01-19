@@ -9,7 +9,7 @@ const cors = require('cors');
 app.use(express.json());
 // Connect Database
 connectDB();
-app.use(cors());
+app.use(cors({origin: 'https://cobblestone-place.netlify.app'}));
 
 
 
