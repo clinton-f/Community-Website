@@ -13,9 +13,9 @@ app.use(express.json(
       next();
     });
 
-    app.get('/jokes/random', (req, res) => {
+    app.get('/api/cms', (req, res) => {
       request(
-        { url: 'https://joke-api-strict-cors.appspot.com/jokes/random' },
+        { url: https://community-website-cms.onrender.com' },
         (error, response, body) => {
           if (error || response.statusCode !== 200) {
             return res.status(500).json({ type: 'error', message: err.message });
