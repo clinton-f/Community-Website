@@ -25,7 +25,7 @@ app.use(express.json(
         }
       )
     }
-));
+);
 
 
 // Connect Database
