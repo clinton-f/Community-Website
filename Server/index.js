@@ -5,32 +5,30 @@ const connectDB = require('./config/db');
 const cors = require('cors');
 
 
+// Connect Database
+connectDB();
 //Middleware
-//app.use(express.json()); Updating the Middleware in order to allow the specific frontend URL to access it.
+app.use(express.json()); //Updating the Middleware in order to allow the specific frontend URL to access it.
+
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'https://community-website-cms.onrender.com');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
 
-    app.get('/api/cms', (req, res) => {
-      request(
-        { url: 'https://community-website-cms.onrender.com/api/cms' },
-        (error, response, body) => {
-          if (error || response.statusCode !== 200) {
-            return res.status(500).json({ type: 'error', message: err.message });
-          }
+app.get('/api/cms', (req, res) => {
+  request(
+    { url: 'https://community-website-cms.onrender.com/api/cms' },
+    (error, response, body) => {
+      if (error || response.statusCode !== 200) {
+        return res.status(500).json({ type: 'error', message: error.message }); // change err to error
+      }
 
-          res.json(JSON.parse(body));
-        }
-      )
+      res.json(JSON.parse(body));
     }
-);
-
-
-// Connect Database
-connectDB();
-//app.use(cors({origin: 'https://community-website-cms.onrender.com'}));
+  );
+});
 
 
 
