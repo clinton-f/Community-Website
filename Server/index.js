@@ -10,18 +10,12 @@ connectDB();
 //Middleware
 app.use(express.json()); //Updating the Middleware in order to allow the specific frontend URL to access it.
 
-
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', 'https://community-website-cms.onrender.com');
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//   next();
-// });
-
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://cobblestone-place.netlify.app');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
+   res.header('Access-Control-Allow-Origin', '*');
+   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+   next();
 });
+
 
 app.get('/api/cms', (req, res) => {
   request(
