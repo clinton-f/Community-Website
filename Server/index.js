@@ -4,9 +4,17 @@ const app = express();
 const connectDB = require('./config/db');
 const cors = require('cors');
 
+var corsOptions = {
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+}
 
 // Connect Database
 connectDB();
+
+app.use(cors(corsOptions));
 //Middleware
 app.use(express.json()); //Updating the Middleware in order to allow the specific frontend URL to access it.
 
