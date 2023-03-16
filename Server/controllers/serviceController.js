@@ -212,6 +212,7 @@ exports.getUsers = async(req, res) => {
 }
 
 exports.getCMS = async(req, res) => {
+    console.log("Test");
     try {
         const cms = await CMS.find();
         res.json(cms);
