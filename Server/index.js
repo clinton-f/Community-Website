@@ -25,18 +25,18 @@ app.use((req, res, next) => {
 });
 
 
-app.get('/api/cms', (req, res) => {
-  request(
-    { url: 'https://community-website-cms.onrender.com/api/cms' },
-    (error, response, body) => {
-      if (error || response.statusCode !== 200) {
-        return res.status(500).json({ type: 'error', message: error.message }); // change err to error
-      }
+// app.get('/api/cms', (req, res) => {
+//   request(
+//     { url: 'https://community-website-cms.onrender.com/api/cms' },
+//     (error, response, body) => {
+//       if (error || response.statusCode !== 200) {
+//         return res.status(500).json({ type: 'error', message: error.message }); // change err to error
+//       }
 
-      res.json(JSON.parse(body));
-    }
-  );
-});
+//       res.json(JSON.parse(body));
+//     }
+//   );
+// });
 
 
 
